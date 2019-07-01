@@ -39,9 +39,10 @@ android {
 }
 
 dependencies {
+    api project(':qbaselib')
+
     api rootProject.ext.libSupportDesign
     api rootProject.ext.libSupportV7
-
     api rootProject.ext.libGoogleGuava
 }
 

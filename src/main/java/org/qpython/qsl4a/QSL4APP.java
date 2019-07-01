@@ -2,6 +2,8 @@ package org.qpython.qsl4a;
 
 import android.app.Application;
 
+import com.quseit.base.MyApp;
+
 import org.qpython.qsl4a.qsl4a.FutureActivityTaskExecutor;
 import org.qpython.qsl4a.qsl4a.LogUtil;
 import org.qpython.qsl4a.qsl4a.interpreter.InterpreterConfiguration;
@@ -12,7 +14,7 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 
-public class QSL4APP extends Application implements InterpreterConfiguration.ConfigurationObserver {
+public class QSL4APP extends MyApp implements InterpreterConfiguration.ConfigurationObserver {
 
     private final CountDownLatch mLatch = new CountDownLatch(1);
     private final FutureActivityTaskExecutor mTaskExecutor = new FutureActivityTaskExecutor(this);
@@ -31,6 +33,11 @@ public class QSL4APP extends Application implements InterpreterConfiguration.Con
     Map<String, Integer> movieDirs = null;
     private volatile boolean receivedConfigUpdate = false;
     private TriggerRepository mTriggerRepository;
+
+    protected QSL4APP() {
+        super();
+    }
+
 
     @Override
     public void onCreate() {
