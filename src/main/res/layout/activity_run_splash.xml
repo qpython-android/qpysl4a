@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/editor_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sl4a_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@null"/>
+
+    </RelativeLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdgeLength="30dp"
+            android:requiresFadingEdge="horizontal">
+
+            <include
+                android:id="@+id/control"
+                layout="@layout/widget_run_control"/>
+
+        </HorizontalScrollView>
+    </LinearLayout>
+</layout>       

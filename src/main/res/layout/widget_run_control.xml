@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFE8E8E8">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <!--ImageButton
+                android:id="@+id/play_btn"
+                style="@style/run_bottom_btn"
+                android:src="@drawable/ic_run"/-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
