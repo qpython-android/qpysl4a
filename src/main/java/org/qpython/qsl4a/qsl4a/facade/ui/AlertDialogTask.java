@@ -17,8 +17,9 @@
 package org.qpython.qsl4a.qsl4a.facade.ui;
 
 import android.app.Activity;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AlertDialog.Builder;
+//import android.support.v7.app.AlertDialog;
+//import android.support.v7.app.AlertDialog.Builder;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
@@ -246,7 +247,7 @@ public class AlertDialogTask extends DialogTask {
         return mItems.toArray(new CharSequence[mItems.size()]);
     }
 
-    private Builder addOnCancelListener(final AlertDialog.Builder builder, final Activity activity) {
+    private AlertDialog.Builder addOnCancelListener(final AlertDialog.Builder builder, final Activity activity) {
         return builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {

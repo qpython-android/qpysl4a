@@ -21,7 +21,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
@@ -41,7 +41,7 @@ import org.qpython.qsl4a.qsl4a.future.FutureActivityTask;
  * 
  * @author Damon Kohler (damonkohler@gmail.com)
  */
-public class FutureActivity extends AppCompatActivity {
+public class FutureActivity extends Activity {
   private FutureActivityTask<?> mTask;
   
   private int count = 0;
