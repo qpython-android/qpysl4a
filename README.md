@@ -1,6 +1,7 @@
 # About
-QPython's SL4A, which is forked from https://www.github.com/damonkohler/sl4a/
-It's used in QPython/QPython3 project.
+QPysl4a is forked from https://www.github.com/damonkohler/sl4a/, and it provides the Android Layer APIs for script engine.
+
+It is not a standalone project,  it will be included by QPython / QPython3 as a submodule.
 
 # APIs Documentation
 If you are looking for a solution to drive Android with Python, then maybe QPysl4a is exactly what you need. With the help of QPysl4a, you could call many Android APIs with Python code.
