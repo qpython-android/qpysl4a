@@ -1,6 +1,7 @@
-# About
+QPysl4a APIs
+============
 
-The Scripting Layer for Android (abridged as SL4A, and previously named Android Scripting Environment or ASE) is a library that allows the creation and running of scripts written in various scripting languages directly on Android devices. QPython start to extend the SL4A project and integrate it.
+The Scripting Layer for Android (abridged as SL4A, and previously named Android Scripting Environment or ASE) is a library that allows the creation and running of scripts written in various scripting languages directly on Android devices. After having integrated it, QPython continue to develop and extend SL4A project to meet QPython's need, it's QPysl4a project.
 
 
 AndroidFacade

@@ -6,7 +6,7 @@ It is not a standalone project,  it will be included by QPython / QPython3 as a 
 # APIs Documentation
 If you are looking for a solution to drive Android with Python, then maybe QPysl4a is exactly what you need. With the help of QPysl4a, you could call many Android APIs with Python code.
 
-Here is what we have provided: [QPysl4a APIs](APIs.rst)
+Here is what we have provided: [QPysl4a APIs](en/APIs.rst), [Chinese version](cn/APIs.rst)
 
 # Get Help & Help us
 If you found any issue, please report an [issue](https://github.com/qpython-android/qpysl4a/issues)
