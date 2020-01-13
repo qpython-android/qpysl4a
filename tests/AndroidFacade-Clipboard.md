@@ -29,4 +29,4 @@ droid.makeToast("clipboard: %s" % clipboard)
 
 ## Test QrCode
 
-<img src='http://qr.qpython.com.cn/assets/codes/q-127.0.0.1-ab751ec0-3606-11ea-a0b0-fa163e575766.png' />
+[Open QRCode to Scan](http://qr.qpython.com.cn/?p=f1c788ec-360e-11ea-a0b0-fa163e575766)
