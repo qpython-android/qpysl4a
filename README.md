@@ -8,6 +8,13 @@ If you are looking for a solution to drive Android with Python, then maybe QPysl
 
 Here is what we have provided: [QPysl4a APIs](doc/en/APIs.rst), [Chinese version](doc/cn/APIs.rst)
 
+## How to ask QPython related questions
+
+Please tell us what phone, android version, QPython version, where did you install it and your detail question when asking.
+
+- [Ask in stackoverflow](https://stackoverflow.com/questions/tagged/qpython)
+- [在segmentfault提问 - Chinese](https://segmentfault.com/t/qpython)
+
 # Get Help & Help us
 If you found any issue, please report an [issue](https://github.com/qpython-android/qpysl4a/issues)
 
