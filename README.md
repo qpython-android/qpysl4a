@@ -10,7 +10,9 @@ Here is what we have provided: [QPysl4a APIs](doc/en/APIs.rst), [Chinese version
 
 ## How to ask QPython related questions
 
-Please tell us your phone's informatioin, android os information, QPython version, where did you install it and your detail question when asking.
+In order to benefit those who have the same issue with QPython, we suggest that you should ask the issues which is related with QPython within public techical communities.
+
+Please tell us your phone's informatioin, android os information, QPython version, where did you install it and the detailed stituation you have encountered.
 
 - [Ask in stackoverflow](https://stackoverflow.com/questions/tagged/qpython)
 - [在segmentfault提问 - Chinese](https://segmentfault.com/t/qpython)
