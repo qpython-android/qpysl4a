@@ -583,7 +583,7 @@ GEO
    
 *sample code*
 
-:: python
+:: 
 
     #qpy:console
     import time
@@ -615,7 +615,6 @@ GEO
 
             time.sleep(1)
             i = i+1
- 
     droid.stopLocating()
 
 PhoneFacade
