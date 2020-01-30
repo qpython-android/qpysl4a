@@ -918,28 +918,28 @@ SmsFacade
 
 .. py:function:: smsSend(destinationAddress, text)
 
-   Sends an SMS
+   发送一条短信
 
    :param str destinationAddress: typically a phone number
    :param str text:
 
 .. py:function:: smsGetMessageCount(unreadOnly, folder)
 
-   Returns the number of messages
+   返回短信息的数目
 
    :param bool unreadOnly: typically a phone number
    :param str folder(optional): default "inbox"
 
 .. py:function:: smsGetMessageIds(unreadOnly, folder)
 
-   Returns a List of all message IDs
+   返回所有信息的 id
 
    :param bool unreadOnly: typically a phone number
    :param str folder(optional): default "inbox"
 
 .. py:function:: smsGetMessages(unreadOnly, folder, attributes)
 
-   Returns a List of all messages
+   返回所有信息的列表
 
    :param bool unreadOnly: typically a phone number
    :param str folder: default "inbox"
@@ -958,11 +958,11 @@ SmsFacade
 
 .. py:function:: smsGetAttributes()
 
-   Returns a List of all possible message attributes
+   返回指定信息的属性
 
 .. py:function:: smsDeleteMessage(id)
 
-   Deletes a message
+   删除指定的短信息
 
    :param int id: message ID
 
@@ -970,7 +970,7 @@ SmsFacade
 
 .. py:function:: smsMarkMessageRead(ids, read)
 
-   Marks messages as read
+   将短信息标记为已读
 
    :param list ids: List of message IDs to mark as read
    :param bool read:  true or false
