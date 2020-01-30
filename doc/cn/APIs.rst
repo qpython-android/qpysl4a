@@ -23,6 +23,8 @@ Clipboard APIs
 
 ::
 
+    # python
+
     from androidhelper import Android
     droid = Android()
 
