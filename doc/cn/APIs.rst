@@ -164,6 +164,7 @@ Vibrate
    :param int duration: duration in milliseconds
 
 ::
+    # 示范
 
     from androidhelper import Android
     droid = Android()
