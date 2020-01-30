@@ -157,7 +157,7 @@ SendBroadcast APIs
 
 Vibrate
 ----------
-.. py:function:: vibrate(intent)
+.. py:function:: vibrate(duration)
 
    Vibrates the phone or a specified duration in milliseconds
 
@@ -165,7 +165,9 @@ Vibrate
 
 ::
 
-    sample code to show vibrate
+    from androidhelper import Android
+    droid = Android()
+    droid.vibrate(1000)
 
 
 NetworkStatus
@@ -182,7 +184,7 @@ PackageVersion APIs
 ------------------------------
 .. py:function:: requiredVersion(requiredVersion)
 
-   Checks if version of QPython SL4A is greater than or equal to the specified version
+   检测当前 sl4a 的版本是否大于制定的版本
 
    :param int requiredVersion: requiredVersion
 
@@ -191,7 +193,7 @@ PackageVersion APIs
 
 .. py:function:: getPackageVersionCode(packageName)
 
-   Returns package version code
+   返回指定包的版本号
 
    :param str packageName: packageName
 
