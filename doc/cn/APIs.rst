@@ -159,7 +159,7 @@ Vibrate
 ----------
 .. py:function:: vibrate(duration)
 
-   Vibrates the phone or a specified duration in milliseconds
+   使手机震动指定的时间
 
    :param int duration: duration in milliseconds
 
