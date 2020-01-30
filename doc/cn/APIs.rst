@@ -2,7 +2,10 @@ QPysl4a APIs
 ============
 安卓的脚本层（简称为SL4A，以前叫做安卓环境或者ASE）是一个在安卓设备上用不同编程语言创建和运行的开发库。在整合了它到QPython项目中之后，QPython团队开始开发和扩展维护它来适应QPython的需要，这就是QPysl4a项目。
 
-
+.. toctree::
+   :maxdepth: 2
+   
+   
 AndroidFacade
 ===============
 
@@ -10,18 +13,20 @@ Clipboard APIs
 ----------------
 .. py:function:: setClipboard(text)
 
-   Put text in the clipboard
+   向剪贴板写入信息
 
    :param str text: text
 
-.. py:function:: getClipboard(text)
+.. py:function:: getClipboard()
 
-   Read text from the clipboard
+   读取剪贴板中的文本
 
    :return: The text in the clipboard
 
 
 ::
+
+    # python
 
     from androidhelper import Android
     droid = Android()
@@ -58,7 +63,7 @@ Intent & startActivity APIs
 
 .. py:function:: getIntent()
 
-   Returns the intent that launched the script
+   获取启动脚本的 intent
 
 ::
 
@@ -67,7 +72,7 @@ Intent & startActivity APIs
 
 .. py:function:: startActivityForResult(action, uri, type, extras, packagename, classname)
 
-   Starts an activity and returns the result
+   运行一个 activity 并返回结果
 
    :param str action: action
    :param str uri(Optional): uri
@@ -157,15 +162,19 @@ SendBroadcast APIs
 
 Vibrate
 ----------
-.. py:function:: vibrate(intent)
+.. py:function:: vibrate(duration)
 
-   Vibrates the phone or a specified duration in milliseconds
+   使手机震动指定的时间
 
    :param int duration: duration in milliseconds
 
 ::
 
-    sample code to show vibrate
+    # python
+
+    from androidhelper import Android
+    droid = Android()
+    droid.vibrate(1000)
 
 
 NetworkStatus
@@ -182,7 +191,7 @@ PackageVersion APIs
 ------------------------------
 .. py:function:: requiredVersion(requiredVersion)
 
-   Checks if version of QPython SL4A is greater than or equal to the specified version
+   检测当前 sl4a 的版本是否大于制定的版本
 
    :param int requiredVersion: requiredVersion
 
@@ -191,7 +200,7 @@ PackageVersion APIs
 
 .. py:function:: getPackageVersionCode(packageName)
 
-   Returns package version code
+   返回指定包的版本号
 
    :param str packageName: packageName
 
@@ -305,9 +314,10 @@ Toast, getInput, getPassword, notify APIs
    :param str url(optional): url 
 
 ::
+
     import androidhelper
     droid = androidhelper.Android()
-    droid.notify('Hello','QPython','http://qpython.org') # you could set the 3rd parameter None also
+    droid.notify('Hello','QPython','http://qr.qpython.com.cn') # you could set the 3rd parameter None also
 
 
 
@@ -525,6 +535,7 @@ EventFacade
 
    Stops the event server, you can't read in the port anymore
 
+
 LocationFacade
 =========================
 
@@ -561,13 +572,6 @@ Location APIs
 
    :return: A map of location information by provider
 
-*sample code*
-::
-
-    Droid = androidhelper.Android()
-    location = Droid.getLastKnownLocation().result
-    location = location.get('network', location.get('gps'))
-
 
 GEO
 -----------
@@ -576,6 +580,43 @@ GEO
    Returns a list of addresses for the given latitude and longitude
 
    :return: A list of addresses
+   
+   
+*sample code*
+
+:: 
+
+    #qpy:console
+    import time
+    from androidhelper import Android
+    droid = Android()
+    droid.startLocating()
+    locproviders = droid.locationProviders().result
+    print("locproviders:"+repr(locproviders))
+
+    gpsprovider = droid.locationProviderEnabled('gps').result
+    print("gpsprovider:"+repr(gpsprovider))
+    i = 0
+    while i<100:
+            event = droid.eventWaitFor('location', 10000).result
+            print("Event:"+repr(event))
+
+            location = droid.readLocation().result
+
+            if len(location) > 0:
+                print('Location:'+repr(location))
+        
+            else:
+                location = droid.getLastKnownLocation().result
+                print("Last location:"+repr(lastloc))
+
+            loc = location['network'] # change to gps if you can get it
+            addr = droid.geocode(loc['latitude'], loc['longitude']).result
+            print("addr:"+repr(addr))
+
+            time.sleep(1)
+            i = i+1
+    droid.stopLocating()
 
 PhoneFacade
 =========================
@@ -916,28 +957,28 @@ SmsFacade
 
 .. py:function:: smsSend(destinationAddress, text)
 
-   Sends an SMS
+   发送一条短信
 
    :param str destinationAddress: typically a phone number
    :param str text:
 
 .. py:function:: smsGetMessageCount(unreadOnly, folder)
 
-   Returns the number of messages
+   返回短信息的数目
 
    :param bool unreadOnly: typically a phone number
    :param str folder(optional): default "inbox"
 
 .. py:function:: smsGetMessageIds(unreadOnly, folder)
 
-   Returns a List of all message IDs
+   返回所有信息的 id
 
    :param bool unreadOnly: typically a phone number
    :param str folder(optional): default "inbox"
 
 .. py:function:: smsGetMessages(unreadOnly, folder, attributes)
 
-   Returns a List of all messages
+   返回所有信息的列表
 
    :param bool unreadOnly: typically a phone number
    :param str folder: default "inbox"
@@ -956,11 +997,11 @@ SmsFacade
 
 .. py:function:: smsGetAttributes()
 
-   Returns a List of all possible message attributes
+   返回指定信息的属性
 
 .. py:function:: smsDeleteMessage(id)
 
-   Deletes a message
+   删除指定的短信息
 
    :param int id: message ID
 
@@ -968,7 +1009,7 @@ SmsFacade
 
 .. py:function:: smsMarkMessageRead(ids, read)
 
-   Marks messages as read
+   将短信息标记为已读
 
    :param list ids: List of message IDs to mark as read
    :param bool read:  true or false
@@ -1090,64 +1131,90 @@ BatteryManagerFacade
 
 .. py:function:: readBatteryData()
 
-   Returns the most recently recorded battery data
+   读取电池记录数据
 
 .. py:function:: batteryStartMonitoring()
 
-   Starts tracking battery state
+   开始监视电池状态
 
 .. py:function:: batteryStopMonitoring()
 
-   Stops tracking battery state
+   停止监视电池状态
 
 .. py:function:: batteryGetStatus()
 
-   Returns  the most recently received battery status data:
-   1 - unknown;
-   2 - charging;
-   3 - discharging;
-   4 - not charging;
-   5 - full
+   返回充电状态信息
+   
+   1 - 未知;
+   2 - 充电中;
+   3 - 放电中;
+   4 - 未充电;
+   5 - 已充满
 
 .. py:function:: batteryGetHealth()
 
-   Returns the most recently received battery health data:
-   1 - unknown;
-   2 - good;
-   3 - overheat;
-   4 - dead;
-   5 - over voltage;
-   6 - unspecified failure
+   查看电池健康状态
+   
+   1 - 未知;
+   2 - 良好;
+   3 - 过热;
+   4 - 不可用;
+   5 - 电量过饱;
+   6 - 查询失败
 
 .. py:function:: batteryGetPlugType()
 
-   Returns the most recently received plug type data:
-   -1 - unknown
-   0 - unplugged
-   1 - power source is an AC charger
-   2 - power source is a USB port
+   返回充电状态信息
+   
+   -1 - 未知
+   0 - 未插入电源;
+   1 - 交流电源充电
+   2 - usb充电
 
 
 .. py:function:: batteryCheckPresent()
 
-   Returns the most recently received battery presence data
+   查看电池电量信息
 
 .. py:function:: batteryGetLevel()
 
-   Returns the most recently received battery level (percentage)
+   返回电池电量(百分比形式)
 
 .. py:function:: batteryGetVoltage()
 
-   Returns the most recently received battery voltage
+   返回电池的电压
 
 .. py:function:: batteryGetTemperature()
 
-   Returns the most recently received battery temperature
+   返回电池温度
 
 .. py:function:: batteryGetTechnology()
 
-   Returns the most recently received battery technology data
+   返回电池技术数据
 
+::
+
+    # python
+    
+    import time
+    from androidhelper import Android
+    droid = Android()
+    droid.batteryStartMonitoring()
+    time.sleep(5)
+    bdata = droid.readBatteryData()
+    print(bdata.result)
+
+    bstatus = droid.batteryGetStatus().result
+    bhealth = droid.batteryGetHealth().result
+    bplug = droid.batteryGetPlugType().result
+    bcheck = droid.batteryCheckPresent().result
+    blevel = droid.batteryGetLevel().result
+    bvoltage = droid.batteryGetVoltage().result
+    btemperature = droid.batteryGetTemperature().result
+    btechnology = droid.batteryGetTechnology().result
+    print({"status": bstatus, "health": bhealth, "plugtype": bplug, "checkpresent": bcheck, "level": blevel, "voltage": bvoltage, "temperature": btemperature, "technology": btechnology})
+
+    droid.batteryStopMonitoring()
 
 ActivityResultFacade
 =========================
