@@ -10,13 +10,13 @@ Clipboard APIs
 ----------------
 .. py:function:: setClipboard(text)
 
-   Put text in the clipboard
+   向剪贴板写入信息
 
    :param str text: text
 
-.. py:function:: getClipboard(text)
+.. py:function:: getClipboard()
 
-   Read text from the clipboard
+   读取剪贴板中的文本
 
    :return: The text in the clipboard
 
@@ -58,7 +58,7 @@ Intent & startActivity APIs
 
 .. py:function:: getIntent()
 
-   Returns the intent that launched the script
+   获取启动脚本的 intent
 
 ::
 
@@ -67,7 +67,7 @@ Intent & startActivity APIs
 
 .. py:function:: startActivityForResult(action, uri, type, extras, packagename, classname)
 
-   Starts an activity and returns the result
+   运行一个 activity 并返回结果
 
    :param str action: action
    :param str uri(Optional): uri
