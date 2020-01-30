@@ -582,6 +582,7 @@ GEO
    
    
 *sample code*
+
 :: python
 
     #qpy:console
