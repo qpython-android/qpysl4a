@@ -1092,63 +1092,66 @@ BatteryManagerFacade
 
 .. py:function:: readBatteryData()
 
-   Returns the most recently recorded battery data
+   读取电池记录数据
 
 .. py:function:: batteryStartMonitoring()
 
-   Starts tracking battery state
+   开始监视电池状态
 
 .. py:function:: batteryStopMonitoring()
 
-   Stops tracking battery state
+   停止监视电池状态
 
 .. py:function:: batteryGetStatus()
 
-   Returns  the most recently received battery status data:
-   1 - unknown;
-   2 - charging;
-   3 - discharging;
-   4 - not charging;
-   5 - full
+   返回充电状态信息
+   
+   1 - 未知;
+   2 - 充电中;
+   3 - 放电中;
+   4 - 未充电;
+   5 - 已充满
 
 .. py:function:: batteryGetHealth()
 
-   Returns the most recently received battery health data:
-   1 - unknown;
-   2 - good;
-   3 - overheat;
-   4 - dead;
-   5 - over voltage;
-   6 - unspecified failure
+   查看电池健康状态
+   
+   1 - 未知;
+   2 - 良好;
+   3 - 过热;
+   4 - 不可用;
+   5 - 电量过饱;
+   6 - 查询失败
 
 .. py:function:: batteryGetPlugType()
 
-   Returns the most recently received plug type data:
-   -1 - unknown
-   0 - unplugged
-   1 - power source is an AC charger
-   2 - power source is a USB port
+   返回充电状态信息
+   
+   -1 - 未知
+   0 - 未插入电源;
+   1 - 交流电源充电
+   2 - usb充电
 
 
 .. py:function:: batteryCheckPresent()
 
-   Returns the most recently received battery presence data
+   查看电池电量信息
 
 .. py:function:: batteryGetLevel()
 
-   Returns the most recently received battery level (percentage)
+   返回电池电量(百分比形式)
 
 .. py:function:: batteryGetVoltage()
 
-   Returns the most recently received battery voltage
+   返回电池的电压
 
 .. py:function:: batteryGetTemperature()
 
-   Returns the most recently received battery temperature
+   返回电池温度
 
 .. py:function:: batteryGetTechnology()
 
-   Returns the most recently received battery technology data
+   返回电池技术数据
 
 
 ActivityResultFacade
