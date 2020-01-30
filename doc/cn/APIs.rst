@@ -1157,6 +1157,29 @@ BatteryManagerFacade
 
    返回电池技术数据
 
+::
+
+    # python
+    
+    import time
+    from androidhelper import Android
+    droid = Android()
+    droid.batteryStartMonitoring()
+    time.sleep(5)
+    bdata = droid.readBatteryData()
+    print(bdata.result)
+
+    bstatus = droid.batteryGetStatus().result
+    bhealth = droid.batteryGetHealth().result
+    bplug = droid.batteryGetPlugType().result
+    bcheck = droid.batteryCheckPresent().result
+    blevel = droid.batteryGetLevel().result
+    bvoltage = droid.batteryGetVoltage().result
+    btemperature = droid.batteryGetTemperature().result
+    btechnology = droid.batteryGetTechnology().result
+    print({"status": bstatus, "health": bhealth, "plugtype": bplug, "checkpresent": bcheck, "level": blevel, "voltage": bvoltage, "temperature": btemperature, "technology": btechnology})
+
+    droid.batteryStopMonitoring()
 
 ActivityResultFacade
 =========================
