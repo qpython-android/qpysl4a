@@ -534,6 +534,7 @@ EventFacade
 
    Stops the event server, you can't read in the port anymore
 
+
 LocationFacade
 =========================
 
@@ -581,7 +582,7 @@ GEO
    
    
 *sample code*
-.. code-block:: python
+:: python
 
     #qpy:console
     import time
