@@ -321,34 +321,27 @@ Manager APIs
 
 .. py:function:: getLaunchableApplications()
 
-   Returns a list of all launchable application class names
+   获得可运行的应用类名
 
    :return: map object
 
-::
-
-    sample code to show getLaunchableApplications
 
 
 .. py:function:: launch(classname)
 
-   Start activity with the given class name
+   根据给定的类名启动一个 activity 
 
    :param str classname: classname 
 
-::
 
-    sample code to show launch
 
 .. py:function:: getRunningPackages()
 
-   Returns a list of packages running activities or services
+   返回正在运行的 activity 或者服务的列表
 
    :return: List of packages running activities
 
-::
 
-    sample code to show getRunningPackages
 
 .. py:function:: forceStopPackage(packageName)
 
