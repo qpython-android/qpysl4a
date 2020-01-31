@@ -306,6 +306,7 @@ Toast, getInput, getPassword, notify APIs
    :param str url(optional): url 
 
 ::
+
     import androidhelper
     droid = androidhelper.Android()
     droid.notify('Hello','QPython','http://qpython.org') # you could set the 3rd parameter None also
