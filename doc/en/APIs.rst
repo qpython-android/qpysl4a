@@ -359,13 +359,13 @@ CameraFacade
 
 .. py:function:: cameraCapturePicture(targetPath)
 
-   Take a picture and save it to the specified path
+   拍照并保存到指定的路径
 
    :return: A map of Booleans autoFocus and takePicture where True indicates success
 
 .. py:function:: cameraInteractiveCapturePicture(targetPath)
 
-   Starts the image capture application to take a picture and saves it to the specified path
+   启动拍照程序拍照并保存到指定位置
 
 CommonIntentsFacade
 =========================
