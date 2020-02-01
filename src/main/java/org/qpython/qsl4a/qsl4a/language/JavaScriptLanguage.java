@@ -26,7 +26,7 @@ public class JavaScriptLanguage extends Language {
   @Override
   protected String getImportStatement() {
     // FIXME(igor.v.karp): this is interpreter specific
-    return "load(\"/sdcard/com.googlecode.rhinoforandroid/extras/rhino/android.js\");\n";
+    return "load(\"file:///android_asset/android.js\");\n";
   }
 
   @Override

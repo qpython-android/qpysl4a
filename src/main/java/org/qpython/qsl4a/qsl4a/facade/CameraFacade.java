@@ -203,7 +203,12 @@ public class CameraFacade extends RpcReceiver {
     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     File file = new File(targetPath);
     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+
     AndroidFacade facade = mManager.getReceiver(AndroidFacade.class);
-    facade.startActivityForResult(intent);
+    if (intent.resolveActivity(mService.getPackageManager())!=null) {
+      facade.startActivityForResult(intent);
+    } else {
+      LogUtil.e("No camera found");
+    }
   }
 }

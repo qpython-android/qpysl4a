@@ -109,6 +109,10 @@ public class AndroidFacade extends RpcReceiver {
   public void shutdown() {
   }
 
+  public Service getmService() {
+    return this.mService;
+  }
+
   public AndroidFacade(FacadeManager manager) {
     super(manager);
     mService = manager.getService();
@@ -163,7 +167,7 @@ public class AndroidFacade extends RpcReceiver {
       public void onCreate() {
         super.onCreate();
         try {
-          startActivityForResult(intent, 0);
+          startActivityForResult(intent, 1024);
         } catch (Exception e) {
           intent.putExtra("EXCEPTION", e.getMessage());
           setResult(intent);
@@ -360,7 +364,7 @@ public class AndroidFacade extends RpcReceiver {
   void startActivity(final Intent intent) {
     try {
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      mService.startActivity(intent);
+      mService.getApplicationContext().startActivity(intent);
     } catch (Exception e) {
       LogUtil.e("Failed to launch intent.", e);
     }
@@ -600,7 +604,7 @@ public class AndroidFacade extends RpcReceiver {
 
     if (attachmentUri!=null) {
       android.util.Log.d("AndroidFacade", "attachmentUri:"+attachmentUri);
-      if (attachmentUri.startsWith("http:")) {
+      if (attachmentUri.startsWith("http:") || attachmentUri.startsWith("https:")) {
         intent = SPFUtils.getLinkAsIntent(mService.getApplicationContext(), attachmentUri);
       } else {
         intent = new Intent();
@@ -610,23 +614,12 @@ public class AndroidFacade extends RpcReceiver {
     } else {
       intent = new Intent();
     }
-    PendingIntent contentIntent = PendingIntent.getActivity(mService, NOTIFICATION_ID, intent, 0);
-    Notification notification = SPFUtils.getNotification(mService.getApplicationContext(),title, message,contentIntent,
-            SPFUtils.getDrawableId(mService, "img_home_logo"), null, Notification.FLAG_FOREGROUND_SERVICE);
-
-//    Notification notification =
-//            new Notification(mResources.getLogo48(), message, System.currentTimeMillis());
-
-//    notification.icon = com.quseit.android.R.drawable.micon;
-//    notification.tickerText = title;
-//    notification.contentIntent = contentIntent;
-//
-//    notification.setLatestEventInfo(mService, title, message, contentIntent);
-//    notification.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+    PendingIntent contentIntent = PendingIntent.getActivity(mService, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    Notification notification = SPFUtils.getNotification(mService.getApplicationContext(), title, message, contentIntent,
+            SPFUtils.getDrawableId(mService, "img_home_logo"), null, Notification.FLAG_AUTO_CANCEL);
 
     // Get a unique notification id from the application.
-    final int notificationId = NotificationIdFactory.create();
-    mNotificationManager.notify(notificationId, notification);
+    mNotificationManager.notify(NotificationIdFactory.create(), notification);
   }
 
   @Rpc(description = "Returns the status of network connection.")
