@@ -67,6 +67,9 @@ public class QPyScriptService extends Service {
             mProxy.shutdown();
         }
 
+        Intent intent = new Intent("org.qpython.qpysl4a.KeepAlive");
+        sendBroadcast(intent);
+
         super.onDestroy();
     }
 
@@ -79,7 +82,8 @@ public class QPyScriptService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+         super.onStartCommand(intent, flags, startId);
+         return START_STICKY;
     }
 
     // ------------------------------------------------------------------------------------------------------
