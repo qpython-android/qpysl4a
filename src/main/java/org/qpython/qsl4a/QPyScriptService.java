@@ -67,8 +67,8 @@ public class QPyScriptService extends Service {
             mProxy.shutdown();
         }
 
-        Intent intent = new Intent("org.qpython.qpysl4a.KeepAlive");
-        sendBroadcast(intent);
+//        Intent intent = new Intent("org.qpython.qpysl4a.KeepAlive");
+//        sendBroadcast(intent);
 
         super.onDestroy();
     }
