@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.qpython.qsl4a.qsl4a.AndroidProxy;
+import org.qpython.qsl4a.qsl4a.LogUtil;
 import org.qpython.qsl4a.qsl4a.interpreter.InterpreterConfiguration;
 import org.qpython.qsl4a.qsl4a.jsonrpc.RpcReceiverManager;
 import org.qpython.qsl4a.qsl4a.util.SPFUtils;
@@ -62,6 +63,7 @@ public class QPyScriptService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy");
+        LogUtil.e("doWork444444");
 
         if (mProxy != null) {
             mProxy.shutdown();
@@ -91,6 +93,7 @@ public class QPyScriptService extends Service {
     @Override
     public void onCreate() {
         Log.d(TAG, "onCreate");
+        LogUtil.e("doWork3333333");
         super.onCreate();
         // clear before run
         /*File logFile = new File( Environment.getExternalStorageDirectory()+"/"+CONF.BASE_PATH+"/"+scriptName.substring(scriptName.lastIndexOf("/")+1)+".log" );
