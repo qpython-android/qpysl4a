@@ -16,6 +16,7 @@
 
 package org.qpython.qsl4a.qsl4a.facade;
 
+import android.Manifest;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Contacts.PhonesColumns;
+import android.support.annotation.RequiresPermission;
 import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.PhoneStateListener;
@@ -161,6 +163,7 @@ public class PhoneFacade extends RpcReceiver {
     }
 
     @Rpc(description = "Returns the current cell location.")
+    @RequiresPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
     public CellLocation getCellLocation() {
         return mTelephonyManager.getCellLocation();
     }
@@ -221,6 +224,7 @@ public class PhoneFacade extends RpcReceiver {
     }
 
     @Rpc(description = "Returns the serial number of the SIM, if applicable. Return null if it is unavailable.")
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public String getSimSerialNumber() {
         return mTelephonyManager.getSimSerialNumber();
     }
@@ -246,16 +250,19 @@ public class PhoneFacade extends RpcReceiver {
     }
 
     @Rpc(description = "Returns the unique subscriber ID, for example, the IMSI for a GSM phone. Return null if it is unavailable.")
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public String getSubscriberId() {
         return mTelephonyManager.getSubscriberId();
     }
 
     @Rpc(description = "Retrieves the alphabetic identifier associated with the voice mail number.")
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public String getVoiceMailAlphaTag() {
         return mTelephonyManager.getVoiceMailAlphaTag();
     }
 
     @Rpc(description = "Returns the voice mail number. Return null if it is unavailable.")
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public String getVoiceMailNumber() {
         return mTelephonyManager.getVoiceMailNumber();
     }
@@ -271,17 +278,19 @@ public class PhoneFacade extends RpcReceiver {
     }
 
     @Rpc(description = "Returns the software version number for the device, for example, the IMEI/SV for GSM phones. Return null if the software version is not available.")
+    @RequiresPermission(android.Manifest.permission.READ_PHONE_STATE)
     public String getDeviceSoftwareVersion() {
         return mTelephonyManager.getDeviceSoftwareVersion();
     }
 
     @Rpc(description = "Returns the phone number string for line 1, for example, the MSISDN for a GSM phone. Return null if it is unavailable.")
+    @RequiresPermission(Manifest.permission.READ_PHONE_NUMBERS)
     public String getLine1Number() {
         return mTelephonyManager.getLine1Number();
     }
 
-    @Rpc(description = "Returns the neighboring cell information of the device.")
-    public List<NeighboringCellInfo> getNeighboringCellInfo() {
-        return mTelephonyManager.getNeighboringCellInfo();
-    }
+//    @Rpc(description = "Returns the neighboring cell information of the device.")
+//    public List<NeighboringCellInfo> getNeighboringCellInfo() {
+//        return mTelephonyManager.getNeighboringCellInfo();
+//    }
 }
