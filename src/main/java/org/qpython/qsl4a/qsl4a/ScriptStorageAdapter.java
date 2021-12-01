@@ -16,6 +16,10 @@
 
 package org.qpython.qsl4a.qsl4a;
 
+import android.content.Context;
+
+import com.quseit.util.FileUtils;
+
 import org.qpython.qsl4a.qsl4a.interpreter.Interpreter;
 import org.qpython.qsl4a.qsl4a.interpreter.InterpreterConfiguration;
 import org.qpython.qsl4a.qsl4a.interpreter.InterpreterConstants;
@@ -46,9 +50,9 @@ public class ScriptStorageAdapter {
   /**
    * Writes data to the script by name and overwrites any existing data.
    */
-  public static void writeScript(File script, String data) {
+  public static void writeScript(Context context, File script, String data) {
     if (script.getParent() == null) {
-      script = new File(InterpreterConstants.SCRIPTS_ROOT, script.getPath());
+      script = new File(FileUtils.getScriptsRootPath(context), script.getPath());
     }
     try {
       FileWriter stream = new FileWriter(script, false /* overwrite */);
@@ -63,9 +67,9 @@ public class ScriptStorageAdapter {
   /**
    * Returns a list of all available script {@link File}s.
    */
-  public static List<File> listAllScripts(File dir) {
+  public static List<File> listAllScripts(Context context,File dir) {
     if (dir == null) {
-      dir = new File(InterpreterConstants.SCRIPTS_ROOT);
+      dir = new File(FileUtils.getScriptsRootPath(context));
     }
     if (dir.exists()) {
       List<File> scripts = Arrays.asList(dir.listFiles());
@@ -89,10 +93,10 @@ public class ScriptStorageAdapter {
    * Returns a list of script {@link File}s from the given folder for which there is an interpreter
    * installed.
    */
-  public static List<File> listExecutableScripts(File directory, InterpreterConfiguration config) {
+  public static List<File> listExecutableScripts(Context context,File directory, InterpreterConfiguration config) {
     // NOTE(damonkohler): Creating a LinkedList here is necessary in order to be able to filter it
     // later.
-    List<File> scripts = new LinkedList<File>(listAllScripts(directory));
+    List<File> scripts = new LinkedList<>(listAllScripts(context,directory));
     // Filter out any files that don't have interpreters installed.
     for (Iterator<File> it = scripts.iterator(); it.hasNext();) {
       File script = it.next();
@@ -111,18 +115,18 @@ public class ScriptStorageAdapter {
    * Returns a list of all (including subfolders) script {@link File}s for which there is an
    * interpreter installed.
    */
-  public static List<File> listExecutableScriptsRecursively(File directory,
+  public static List<File> listExecutableScriptsRecursively(Context context,File directory,
       InterpreterConfiguration config) {
     // NOTE(damonkohler): Creating a LinkedList here is necessary in order to be able to filter it
     // later.
     List<File> scripts = new LinkedList<File>();
-    List<File> files = listAllScripts(directory);
+    List<File> files = listAllScripts(context,directory);
 
     // Filter out any files that don't have interpreters installed.
     for (Iterator<File> it = files.iterator(); it.hasNext();) {
       File file = it.next();
       if (file.isDirectory()) {
-        scripts.addAll(listExecutableScriptsRecursively(file, config));
+        scripts.addAll(listExecutableScriptsRecursively(context,file, config));
       }
       Interpreter interpreter = config.getInterpreterForScript(file.getName());
       if (interpreter != null && interpreter.isInstalled()) {

@@ -18,6 +18,7 @@ package org.qpython.qsl4a.qsl4a.interpreter.html;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -74,7 +75,7 @@ public class HtmlActivityTask extends FutureActivityTask<Void> {
           + "return this._call(\"%1$s\", Array.prototype.slice.call(arguments)); };";
 
   private static final String PREFIX = "file://";
-  private static final String BASE_URL = PREFIX + InterpreterConstants.SCRIPTS_ROOT;
+//  private static final String BASE_URL = PREFIX + InterpreterConstants.SCRIPTS_ROOT;
 
   private final RpcReceiverManager mReceiverManager;
   private final String mJsonSource;
@@ -139,7 +140,7 @@ public class HtmlActivityTask extends FutureActivityTask<Void> {
         source = source.replace("{{QPYBUILTIN}}","<script>" + mJsonSource + "</script>" + "<script>" + mAndroidJsSource + "</script>"
                 + "<script>" + mAPIWrapperSource + "</script>");
 
-        mView.loadDataWithBaseURL(BASE_URL, source, "text/html", "utf-8", null);
+        mView.loadDataWithBaseURL(getBaseUrl(mView.getContext().getApplicationContext()), source, "text/html", "utf-8", null);
 
         Log.d("MyWebViewClient", source);
 
@@ -148,6 +149,10 @@ public class HtmlActivityTask extends FutureActivityTask<Void> {
       }
       return true;
     }
+  }
+
+  private String getBaseUrl(Context context){
+    return PREFIX + com.quseit.util.FileUtils.getScriptsRootPath(context);
   }
 
   @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
@@ -196,7 +201,7 @@ public class HtmlActivityTask extends FutureActivityTask<Void> {
               + "<script>" + mAPIWrapperSource + "</script>");
 
         //Log.d(TAG, "source:"+source);
-      mView.loadDataWithBaseURL(BASE_URL, source, "text/html", "utf-8", null);
+      mView.loadDataWithBaseURL(getBaseUrl(mView.getContext().getApplicationContext()), source, "text/html", "utf-8", null);
     } else {
       mView.loadUrl(mUrl);
     }

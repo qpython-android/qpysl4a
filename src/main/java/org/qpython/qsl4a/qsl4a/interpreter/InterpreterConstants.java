@@ -18,6 +18,8 @@ package org.qpython.qsl4a.qsl4a.interpreter;
 
 import android.os.Environment;
 
+import com.quseit.util.FileUtils;
+
 /**
  * A collection of constants required for installation/removal of an interpreter.
  * 
@@ -26,16 +28,15 @@ import android.os.Environment;
  */
 public interface InterpreterConstants {
 
-  public static final String SDCARD_ROOT =
-      Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+//  public static final String SDCARD_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
 
-  public static final String SDCARD_SL4A_ROOT = SDCARD_ROOT + "sl4a/";
+//  public static final String SDCARD_SL4A_ROOT = SDCARD_ROOT + "sl4a/";
 
-  public static final String SCRIPTS_ROOT = SDCARD_SL4A_ROOT + "scripts/";
+//  public static final String SCRIPTS_ROOT = SDCARD_SL4A_ROOT + "scripts/";
 
-  public static final String SDCARD_SL4A_DOC = SDCARD_SL4A_ROOT + "doc/";
+//  public static final String SDCARD_SL4A_DOC = SDCARD_SL4A_ROOT + "doc/";
 
-  public static final String SL4A_DALVIK_CACHE_ROOT = "/dalvik-cache/";
+//  public static final String SL4A_DALVIK_CACHE_ROOT = "/dalvik-cache/";
 
   public static final String INTERPRETER_EXTRAS_ROOT = "/extras/";
 

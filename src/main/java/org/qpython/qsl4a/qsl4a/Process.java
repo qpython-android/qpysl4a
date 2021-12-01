@@ -16,6 +16,8 @@
 
 package org.qpython.qsl4a.qsl4a;
 
+import android.content.Context;
+
 import org.qpython.qsl4a.codec.StreamGobbler;
 import org.qpython.qsl4a.qsl4a.interpreter.InterpreterConstants;
 
@@ -106,7 +108,7 @@ public class Process {
     return mIn;
   }
 
-  public void start(final Runnable shutdownHook) {
+  public void start(Context context, final Runnable shutdownHook) {
     if (isAlive()) {
       throw new RuntimeException("Attempted to start process that is already running.");
     }
@@ -117,17 +119,19 @@ public class Process {
 
     int[] pid = new int[1];
     String[] argumentsArray = mArguments.toArray(new String[mArguments.size()]);
-    mLog = new File(String.format("%s/%s.log", InterpreterConstants.SDCARD_SL4A_ROOT, getName()));
+//    mLog = new File(String.format("%s/%s.log", InterpreterConstants.SDCARD_SL4A_ROOT, getName()));
+    mLog = new File(String.format("%s/%s.log", FileUtils.getRootPath(context.getApplicationContext()), getName()));
 
     mFd =
         Exec.createSubprocess(binaryPath, argumentsArray, getEnvironmentArray(),
-            getWorkingDirectory(), pid);
+            getWorkingDirectory(context), pid);
     mPid.set(pid[0]);
     mOut = new FileOutputStream(mFd);
     mIn = new StreamGobbler(new FileInputStream(mFd), mLog, DEFAULT_BUFFER_SIZE);
     mStartTime = System.currentTimeMillis();
 
     new Thread(new Runnable() {
+      @Override
       public void run() {
         int result = Exec.waitFor(mPid.get());
         mEndTime = System.currentTimeMillis();
@@ -199,7 +203,7 @@ public class Process {
     mName = name;
   }
 
-  public String getWorkingDirectory() {
+  public String getWorkingDirectory(Context context) {
     return null;
   }
 }

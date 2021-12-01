@@ -17,6 +17,7 @@
 package org.qpython.qsl4a.qsl4a;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 
 
@@ -59,7 +60,7 @@ public class ScriptLauncher {
     return task;
   }
 
-  public static InterpreterProcess launchInterpreter(final AndroidProxy proxy, Intent intent,
+  public static InterpreterProcess launchInterpreter(Context context, final AndroidProxy proxy, Intent intent,
                                                      InterpreterConfiguration config, Runnable shutdownHook) {
     Interpreter interpreter;
     String interpreterName;
@@ -67,33 +68,33 @@ public class ScriptLauncher {
     interpreter = config.getInterpreterByName(interpreterName);
     InterpreterProcess process = new InterpreterProcess(interpreter, proxy);
     if (shutdownHook == null) {
-      process.start(new Runnable() {
+      process.start(context,new Runnable() {
         @Override
         public void run() {
           proxy.shutdown();
         }
       });
     } else {
-      process.start(shutdownHook);
+      process.start(context,shutdownHook);
     }
     return process;
   }
 
-  public static ScriptProcess launchScript(File script, InterpreterConfiguration configuration,
+  public static ScriptProcess launchScript(Context context,File script, InterpreterConfiguration configuration,
       final AndroidProxy proxy, Runnable shutdownHook) {
     if (!script.exists()) {
       throw new RuntimeException("No such script to launch.");
     }
     ScriptProcess process = new ScriptProcess(script, configuration, proxy);
     if (shutdownHook == null) {
-      process.start(new Runnable() {
+      process.start(context,new Runnable() {
         @Override
         public void run() {
           proxy.shutdown();
         }
       });
     } else {
-      process.start(shutdownHook);
+      process.start(context,shutdownHook);
     }
     return process;
   }

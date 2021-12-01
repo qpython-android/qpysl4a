@@ -48,6 +48,18 @@ public class FileUtils {
         || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
   }
 
+  public static String getRootPath(Context context){
+    return com.quseit.util.FileUtils.getQyPath(context) + "/sl4a/";
+  }
+
+  public static String getScriptsRootPath(Context context){
+    return getRootPath(context) + "scripts/";
+  }
+
+  public static String getBasePath(Context context){
+    return "file://" + getScriptsRootPath(context);
+  }
+
   public static String getFileContents(String filename) {
 
     File scriptFile = new File( filename );
@@ -184,15 +196,16 @@ public class FileUtils {
     return true;
   }
 
-  public static File getExternalDownload() {
-    try {
-      Class<?> c = Class.forName("android.os.Environment");
-      Method m = c.getDeclaredMethod("getExternalStoragePublicDirectory", String.class);
-      String download = c.getDeclaredField("DIRECTORY_DOWNLOADS").get(null).toString();
-      return (File) m.invoke(null, download);
-    } catch (Exception e) {
-      return new File(Environment.getExternalStorageDirectory(), "Download");
-    }
+  public static File getExternalDownload(Context context) {
+//    try {
+//      Class<?> c = Class.forName("android.os.Environment");
+//      Method m = c.getDeclaredMethod("getExternalStoragePublicDirectory", String.class);
+//      String download = c.getDeclaredField("DIRECTORY_DOWNLOADS").get(null).toString();
+//      return (File) m.invoke(null, download);
+//    } catch (Exception e) {
+//      return new File(Environment.getExternalStorageDirectory(), "Download");
+//    }
+    return context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
   }
 
   public static boolean rename(File file, String name) {

@@ -16,8 +16,11 @@
 
 package org.qpython.qsl4a.qsl4a.interpreter;
 
+import android.content.Context;
+
 import org.qpython.qsl4a.qsl4a.Analytics;
 import org.qpython.qsl4a.qsl4a.AndroidProxy;
+import org.qpython.qsl4a.qsl4a.FileUtils;
 import org.qpython.qsl4a.qsl4a.LogUtil;
 import org.qpython.qsl4a.qsl4a.Process;
 import org.qpython.qsl4a.qsl4a.SimpleServer;
@@ -103,13 +106,13 @@ public class InterpreterProcess extends Process {
   }
 
   @Override
-  public void start(final Runnable shutdownHook) {
+  public void start(Context context, final Runnable shutdownHook) {
     Analytics.track(mInterpreter.getName());
     // NOTE(damonkohler): String.isEmpty() doesn't work on Cupcake.
     if (!mCommand.equals("")) {
       addArgument(mCommand);
     }
-    super.start(shutdownHook);
+    super.start(context,shutdownHook);
   }
 
   @Override
@@ -119,7 +122,7 @@ public class InterpreterProcess extends Process {
   }
 
   @Override
-  public String getWorkingDirectory() {
-    return InterpreterConstants.SDCARD_SL4A_ROOT;
+  public String getWorkingDirectory(Context context) {
+    return FileUtils.getScriptsRootPath(context);
   }
 }

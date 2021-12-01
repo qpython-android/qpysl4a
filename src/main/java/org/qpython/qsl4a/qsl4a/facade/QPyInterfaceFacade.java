@@ -1,6 +1,7 @@
 package org.qpython.qsl4a.qsl4a.facade;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -118,7 +119,7 @@ public class QPyInterfaceFacade extends RpcReceiver {
     }
 
     @Rpc(description = "Get last QPython execute log", returns = "LogUtil string")
-    public String getLastLog(@RpcParameter(name = "QPython script path")  @RpcOptional String path) {
+    public String getLastLog(@RpcParameter(name = "QPython script path")  @RpcOptional String path, Context context) {
         String content;
         content = FileUtils.getFileContents(path, 64);
         boolean isQApp = content.contains("#qpy:qpyapp");
@@ -142,7 +143,8 @@ public class QPyInterfaceFacade extends RpcReceiver {
 
         } else if (isWeb || isQApp) {
             //File script = new File(path);
-            String log = Environment.getExternalStorageDirectory()+ "/qpython/log/last.log";
+//            String log = Environment.getExternalStorageDirectory()+ "/qpython/log/last.log";
+            String log = com.quseit.util.FileUtils.getQyPath(context) + "/qpython/log/last.log";
             File lf = new File(log);
             if (lf.exists()) {
                 return "# QPython:getLastLog(ok)\n"

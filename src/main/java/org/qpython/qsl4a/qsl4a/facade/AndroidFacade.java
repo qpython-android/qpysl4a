@@ -526,6 +526,7 @@ public class AndroidFacade extends RpcReceiver {
   @Rpc(description = "Displays a short-duration Toast notification.")
   public void makeToast(@RpcParameter(name = "message") final String message) {
     mHandler.post(new Runnable() {
+      @Override
       public void run() {
         Toast.makeText(mService, message, Toast.LENGTH_SHORT).show();
       }
@@ -726,7 +727,7 @@ public class AndroidFacade extends RpcReceiver {
     zone.put("offset", tz.getOffset((new Date()).getTime()));
     result.put("TZ", zone);
     result.put("SDK", android.os.Build.VERSION.SDK);
-    result.put("download", FileUtils.getExternalDownload().getAbsolutePath());
+    result.put("download", FileUtils.getExternalDownload(mService.getApplicationContext()).getAbsolutePath());
     result.put("appcache", mService.getCacheDir().getAbsolutePath());
     try {
       StatFs fs = new StatFs("/sdcard");
