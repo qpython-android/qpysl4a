@@ -42,13 +42,12 @@ public class QSL4APP extends MyApp implements InterpreterConfiguration.Configura
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
+    public void initConfiguration() {
         mConfiguration = new InterpreterConfiguration(this);
         mConfiguration.registerObserver(this);
         mConfiguration.startDiscovering(InterpreterConstants.MIME + QSL4AScript.getFileExtension(this));
-
-        //注册crashHandler类
-        int xq = 30;
     }
 
     public FutureActivityTaskExecutor getTaskExecutor() {
