@@ -50,7 +50,7 @@ public class CommonIntentsFacade extends RpcReceiver {
   private void view(Uri uri, String type) {
 
     Intent intent = new Intent();
-    intent.setClassName(this.mAndroidFacade.getmService().getApplicationContext(),"org.qpython.qpy.main.QWebViewActivity");
+    intent.setClassName(this.mAndroidFacade.getmService().getApplicationContext(),"org.qpython.qpy.main.activity.QWebViewActivity");//乘着船 修改：目标activity拼写错误
     intent.putExtra("com.quseit.common.extra.CONTENT_URL1", "main");
     intent.putExtra("com.quseit.common.extra.CONTENT_URL2", "QPyWebApp");
     //intent.putExtra("com.quseit.common.extra.CONTENT_URL6", "drawer");
